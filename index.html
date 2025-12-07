@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>System Zero - Tactical</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+              tech: ['Rajdhani', 'sans-serif'],
+            },
+            colors: {
+              sys: {
+                bg: '#050505',
+                surface: '#0A0A0A',
+                border: '#222222',
+                text: '#EEEEEE',
+                dim: '#444444',
+                accent: '#FF3300', // Deep Safety Orange
+                accentDim: 'rgba(255, 51, 0, 0.15)',
+                cyan: '#00F0FF',
+              }
+            },
+            boxShadow: {
+              'beam': '0 -10px 40px -10px rgba(255, 51, 0, 0.5)',
+              'glow': '0 0 15px rgba(255, 51, 0, 0.2)',
+              'depth': '0 20px 50px -10px rgba(0,0,0,0.9)'
+            },
+            animation: {
+              'spin-slow': 'spin 20s linear infinite',
+              'spin-slower': 'spin 40s linear infinite',
+              'spin-reverse-slow': 'spin-reverse 30s linear infinite',
+              'scan': 'scanline 8s linear infinite',
+            },
+            keyframes: {
+              'spin-reverse': {
+                'from': { transform: 'rotate(360deg)' },
+                'to': { transform: 'rotate(0deg)' }
+              },
+              'scanline': {
+                '0%': { transform: 'translateY(-100%)' },
+                '100%': { transform: 'translateY(100vh)' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #050505;
+        color: #EEEEEE;
+        font-family: 'Inter', sans-serif;
+        overflow: hidden;
+      }
+      
+      /* Film Grain */
+      .noise-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 9998;
+        opacity: 0.04;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      }
+
+      /* Scanline */
+      .scanline-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 20px;
+        background: linear-gradient(to bottom, transparent, rgba(255, 51, 0, 0.1), transparent);
+        opacity: 0.5;
+        pointer-events: none;
+        z-index: 9999;
+        animation: scanline 6s linear infinite;
+      }
+
+      /* Vignette */
+      .vignette {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: radial-gradient(circle at center, transparent 60%, rgba(0,0,0,0.8) 100%);
+        pointer-events: none;
+        z-index: 9000;
+      }
+
+      /* Dot Grid Texture */
+      .dot-grid {
+        background-image: radial-gradient(#333 1px, transparent 1px);
+        background-size: 32px 32px;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0A0A0A;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333; 
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #FF3300;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "recharts": "https://aistudiocdn.com/recharts@^3.5.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.25"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
