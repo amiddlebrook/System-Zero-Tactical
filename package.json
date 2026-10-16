@@ -1,11 +1,14 @@
 {
-  "name": "system-zero---tactical",
+  "name": "system-zero-tactical",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "typecheck": "tsc --noEmit",
     "build": "vite build",
+    "smoke": "node scripts/smoke.mjs",
+    "check": "npm run typecheck && npm run build && npm run smoke",
     "preview": "vite preview"
   },
   "dependencies": {
