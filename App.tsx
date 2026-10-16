@@ -79,7 +79,7 @@ const loadWorkspace = (): Workspace => {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
       const value: unknown = JSON.parse(stored);
-      if (validWorkspace(value)) return { ...value, mode: 'local' };
+      if (validWorkspace(value)) return { ...value, mode: value.mode === 'sample' ? 'sample' : 'local' };
     }
   } catch { /* local storage may be disabled */ }
   return seed();
